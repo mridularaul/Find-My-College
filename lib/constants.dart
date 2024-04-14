@@ -30,3 +30,24 @@ const kTextFieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(2.0)),
   ),
 );
+
+Widget boxWidget(Color color, Widget child) {
+  return Container(
+    height: 100,
+    width: double.infinity,
+    decoration: BoxDecoration(
+      color: color,
+      borderRadius: BorderRadius.circular(7),
+      boxShadow: [
+        BoxShadow(color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 1,
+          blurRadius: 5,
+          offset: Offset(0, 3),)
+      ],
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: child,
+    ),
+  );
+}
