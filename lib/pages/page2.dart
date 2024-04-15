@@ -5,6 +5,8 @@ class outputScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lblue,
+      appBar: AppBar(title: Text(""),backgroundColor: Colors.transparent,),
+
     );
   }
 
