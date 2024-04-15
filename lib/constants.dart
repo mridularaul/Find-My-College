@@ -22,7 +22,7 @@ const kTextFieldDecoration = InputDecoration(
   fillColor: Colors.transparent,
   contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
   border: OutlineInputBorder(
-    borderSide: BorderSide(color: darkBlue, width: 2.0),
+    borderSide: BorderSide(color: fontColor, width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(2.0)),
   ),
   focusedBorder: OutlineInputBorder(
@@ -33,7 +33,7 @@ const kTextFieldDecoration = InputDecoration(
 
 Widget boxWidget(Color color, Widget child) {
   return Container(
-    height: 100,
+    //height: 100,
     width: double.infinity,
     decoration: BoxDecoration(
       color: color,
@@ -46,7 +46,7 @@ Widget boxWidget(Color color, Widget child) {
       ],
     ),
     child: Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(8, 20, 8, 20),
       child: child,
     ),
   );
