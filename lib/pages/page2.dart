@@ -4,7 +4,7 @@ class outputScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lblue,
+      backgroundColor: bgColor,
       appBar: AppBar(title: Text(""),backgroundColor: Colors.transparent,),
 
     );

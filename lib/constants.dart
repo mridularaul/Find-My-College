@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-const Color lblue = Color(0xffD3E7FF);
-const Color darkBlue = Color(0xff7BB7FF);
-const Color lpink = Color(0xffFFD3DB);
-const Color darkPink = Color(0xffFFA4BF);
-const Color lyellow = Color(0xffFFF5D3);
-const Color darkYellow = Color(0xffFFD27B);
-const Color fontColor = Color(0xff12151B);
-const Color grey = Color(0xffD3E7FF);
+const Color fontColor = Color(0xff1B1212);
+const Color bgColor = Color(0xffF0F0F0);
+const Color peach = Color(0xffFF7567);
+const Color lpeach = Color(0xffFFE2DF);
+const Color darkPeach = Color(0xffCB4234);
 
 const kHeading = TextStyle(color: fontColor,fontFamily: 'AbrilFatface',fontSize: 43);
 const kText = TextStyle(color: fontColor,fontFamily: 'Montserrat',fontSize: 15);
-const kboldText = TextStyle(color: fontColor,fontFamily: 'Montserrat',fontWeight:FontWeight.bold,fontSize: 13);
+const kboldText = TextStyle(color: darkPeach,fontFamily: 'Montserrat',fontWeight:FontWeight.bold,fontSize: 13);
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
@@ -26,17 +23,17 @@ const kTextFieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(2.0)),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: darkBlue, width: 2.0),
+    borderSide: BorderSide(color: peach, width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(2.0)),
   ),
 );
 
-Widget boxWidget(Color color, Widget child) {
+Widget boxWidget(Widget child) {
   return Container(
     //height: 100,
     width: double.infinity,
     decoration: BoxDecoration(
-      color: color,
+      color: Colors.white,
       borderRadius: BorderRadius.circular(7),
       boxShadow: [
         BoxShadow(color: Colors.grey.withOpacity(0.5),
