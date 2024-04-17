@@ -12,7 +12,6 @@ const kboldText = TextStyle(color: darkPeach,fontFamily: 'Montserrat',fontWeight
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
-
   hintStyle:
   TextStyle(color: Colors.grey, fontSize: 12, fontFamily: 'Montserrat'),
   filled: true,
