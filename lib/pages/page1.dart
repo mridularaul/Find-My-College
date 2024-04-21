@@ -209,11 +209,11 @@ class inputScreen extends StatelessWidget{
                               );
                             }
                             else if(formkey.currentState!.validate()){
-                              print(city);
-                              print(branch);
-                              print(category);
+                              // print(city);
+                              // print(branch);
+                              // print(category);
                               Navigator.push(context,
-                                MaterialPageRoute(builder: (context)=>outputScreen()),
+                                MaterialPageRoute(builder: (context)=>outputScreen(category: category, percentile: percentile, city: city, branch: branch,)),
                               );
                             }
 

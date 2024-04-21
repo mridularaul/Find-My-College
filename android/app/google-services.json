@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "598475931298",
+    "firebase_url": "https://find-my-college-c70be-default-rtdb.firebaseio.com",
+    "project_id": "find-my-college-c70be",
+    "storage_bucket": "find-my-college-c70be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598475931298:android:69e6e150fb89bf0cfce1fb",
+        "android_client_info": {
+          "package_name": "com.example.find_my_college"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKnHyVOUrqSsqm6C3jEeVzrDPp4Sdb31k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
