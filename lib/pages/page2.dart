@@ -26,24 +26,7 @@ class _outputScreenState extends State<outputScreen> {
       .child("college_db_with_predictions");
 
   Future<void> queryList(String category,List<String> cities, List<String> branches, List<dynamic> list) async {
-    // for(final data in list){
-    //   if(data==null){
-    //     continue;
-    //   }
-    //   else if(data['Seat Type']==category && data['Percentile']<percentile){
-    //     for (String city in cities) {
-    //       for (String branch in branches) {
-    //         if( data['City']==city && data['Branch']==branch){
-    //           //print("data : $data");
-    //           collegeList.add(data);
-    //           break;
-    //         }
-    //       }
-    //     }
-    //   }
-    //
-    // }
-    // print(collegeList);
+
       List<dynamic> filteredList = list.where((data) =>
       data != null &&
           data['Seat Type'] == category &&
