@@ -82,6 +82,9 @@ class inputScreen extends StatelessWidget{
                                 onOptionSelected: (List<ValueItem> selectedOptions) {
                                   category = selectedOptions[0].toMap()['label'].toString();
                                 },
+                                onOptionRemoved: (int i,ValueItem selectedOptions){
+                                  category ="";
+                                },
                                 options: categorylist,
                                 selectionType: SelectionType.single,
                                 searchEnabled: true,
@@ -203,6 +206,7 @@ class inputScreen extends StatelessWidget{
                           onPressed: (){
                             city.clear();
                             branch.clear();
+
                             for (final cities in _cityCont.selectedOptions){
                               city.add(cities.toMap()['label'].toString());
                             }
@@ -210,7 +214,7 @@ class inputScreen extends StatelessWidget{
                               branch.add(branches.toMap()['label'].toString());
                             }
 
-                            if(category==""){
+                            if( _categoryCont.selectedOptions.isEmpty){
                               print("category not selected");
                               ScaffoldMessenger.of(context).showSnackBar(
                                  SnackBar(
@@ -221,6 +225,7 @@ class inputScreen extends StatelessWidget{
                               );
                             }
                             else if(formkey.currentState!.validate()){
+                              print(category);
                               Navigator.push(context,
                                 MaterialPageRoute(builder: (context)=>outputScreen(category: category, percentile: percentile, city: city, branch: branch,)),
                               );
