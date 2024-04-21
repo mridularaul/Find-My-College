@@ -9,16 +9,17 @@ import 'package:multi_dropdown/multiselect_dropdown.dart';
 import '../data.dart';
 
 class inputScreen extends StatelessWidget{
+
   final formkey = GlobalKey<FormState>();
+
   late double percentile;
   String category = "";
   List<String> city = [];
   List<String> branch = [];
+
   final MultiSelectController _categoryCont = MultiSelectController();
   final MultiSelectController _cityCont = MultiSelectController();
   final MultiSelectController _branchCont = MultiSelectController();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +111,7 @@ class inputScreen extends StatelessWidget{
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Preferred City (Can Select Multiple)",style: kboldText,),
+                            Text("Preferred City (Optional)",style: kboldText,),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: MultiSelectDropDown(
@@ -143,6 +144,10 @@ class inputScreen extends StatelessWidget{
 
                               ),
                             ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                              child: Text("Can Select Multiple",style: kText.copyWith(fontSize: 11),),
+                            ),
                           ],
                         ),
                       ),
@@ -152,7 +157,7 @@ class inputScreen extends StatelessWidget{
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Preferred Branch (Can Select Multiple)",style: kboldText,),
+                            Text("Preferred Branch (Optional)",style: kboldText,),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: MultiSelectDropDown(
@@ -185,12 +190,19 @@ class inputScreen extends StatelessWidget{
 
                               ),
                             ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                              child: Text("Can Select Multiple",style: kText.copyWith(fontSize: 11),),
+                            ),
+
                           ],
                         ),
                       ),
                       SizedBox(height: 15,),
                       ElevatedButton(
                           onPressed: (){
+                            city.clear();
+                            branch.clear();
                             for (final cities in _cityCont.selectedOptions){
                               city.add(cities.toMap()['label'].toString());
                             }
@@ -198,11 +210,11 @@ class inputScreen extends StatelessWidget{
                               branch.add(branches.toMap()['label'].toString());
                             }
 
-                            if(category=="" || city.isEmpty || branch.isEmpty){
+                            if(category==""){
                               print("category not selected");
                               ScaffoldMessenger.of(context).showSnackBar(
                                  SnackBar(
-                                  content: Text('Select from the options',style: kboldText.copyWith(color: Colors.white),),
+                                  content: Text('Select category!',style: kboldText.copyWith(color: Colors.white),),
                                   backgroundColor: peach,
                                    behavior: SnackBarBehavior.floating,
                                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:find_my_college/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:get/get.dart';
 class outputScreen extends StatefulWidget{
   final String category;
   final double percentile;
@@ -14,11 +15,14 @@ class outputScreen extends StatefulWidget{
 }
 
 class _outputScreenState extends State<outputScreen> {
+
   final String category;
   final double percentile;
   final List<String> city;
   final List<String> branch;
    _outputScreenState({required this.category, required this.percentile, required this.city, required this.branch});
+
+  final RxBool _isLoading = true.obs;
 
   List<dynamic> collegeList = [];
   Query databaseReference = FirebaseDatabase.instance
@@ -27,30 +31,29 @@ class _outputScreenState extends State<outputScreen> {
 
   Future<void> queryList(String category,List<String> cities, List<String> branches, List<dynamic> list) async {
 
-      List<dynamic> filteredList = list.where((data) =>
-      data != null &&
-          data['Seat Type'] == category &&
-          data['Percentile'] < percentile &&
-          cities.contains(data['City']) &&
-          branches.contains(data['Branch'])).toList();
+    List<dynamic> filteredList = list.where((data) {
+      if (data == null || data['Seat Type'] != category || data['Percentile'] >= percentile) {
+        return false;
+      }
+      if (city.isNotEmpty && !cities.contains(data['City'])) {
+        return false;
+      }
+      if (branch.isNotEmpty && !branches.contains(data['Branch'])) {
+        return false;
+      }
+      return true;
+    }).toList();
 
       collegeList.addAll(filteredList);
-
-      print(collegeList);
-
 
   }
 
   void initState() {
     super.initState();
     databaseReference.get().then((DataSnapshot snapshot){
-
       dynamic data = snapshot.value;
-      print(data);
-      print(city);
-      print(branch);
       queryList(category,city, branch, data);
-      setState(() {});
+      _isLoading.value = false;
 
      });
 
@@ -66,19 +69,31 @@ class _outputScreenState extends State<outputScreen> {
       backgroundColor: bgColor,
       appBar: AppBar(title: Text("My College List",style: kHeading.copyWith(fontSize: 30),textAlign: TextAlign.start,),backgroundColor: Colors.transparent,),
       body: SafeArea(
-        child: Stack(
-          children: [
-            (collegeList.length != 0)?
-            ListView.builder(
-              itemCount: collegeList.length,
-                itemBuilder: (BuildContext context, int i){
-                  return collegeCard(collegeList.elementAt(i)['College'], collegeList.elementAt(i)['Branch'], collegeList.elementAt(i)['City'], collegeList.elementAt(i)['Percentile']);
-                }
-            )
-            :SizedBox(
-              child: Text("no results for your search"),
-            ),
-          ],
+        child: Obx(
+              () => !_isLoading.value
+              ? (collegeList.length != 0)?
+              ListView.builder(
+                  itemCount: collegeList.length,
+                  itemBuilder: (BuildContext context, int i){
+                    return collegeCard(collegeList.elementAt(i)['College'], collegeList.elementAt(i)['Branch'], collegeList.elementAt(i)['City'], collegeList.elementAt(i)['Percentile']);
+                  }
+              )
+                  :Center(
+                child: Text("Oops! No colleges found\nGo back to modify your search",style: kText.copyWith(fontSize: 20),textAlign: TextAlign.center,),
+              )
+              : TweenAnimationBuilder(
+            tween: Tween(begin: 0, end: 0.5),
+            duration: const Duration(milliseconds: 500),
+            builder: (BuildContext context, Object? value,
+                Widget? child) {
+              return Positioned.fill(
+                child: Container(
+                  child: const Center(
+                      child: CircularProgressIndicator(color: peach,)),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -107,3 +122,4 @@ class _outputScreenState extends State<outputScreen> {
     );
   }
 }
+
