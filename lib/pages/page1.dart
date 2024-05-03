@@ -51,7 +51,7 @@ class inputScreen extends StatelessWidget{
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
                                 onChanged: (value)=> percentile = double.parse(value),
-                                decoration: kTextFieldDecoration.copyWith(hintText: 'eg. 90.409319',
+                                decoration: kTextFieldDecoration.copyWith(hintText: 'Enter percentile',
                                      contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 0),
                                     // isDense : true,
                                 ),
@@ -81,9 +81,6 @@ class inputScreen extends StatelessWidget{
                                 controller: _categoryCont,
                                 onOptionSelected: (List<ValueItem> selectedOptions) {
                                   category = selectedOptions[0].toMap()['label'].toString();
-                                },
-                                onOptionRemoved: (int i,ValueItem selectedOptions){
-                                  category ="";
                                 },
                                 options: categorylist,
                                 selectionType: SelectionType.single,
