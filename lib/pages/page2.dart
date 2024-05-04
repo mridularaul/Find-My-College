@@ -98,7 +98,7 @@ class _OutputScreenState extends State<outputScreen> {
               ? (colleges.length != 0)
               ? Column(
             children: [
-              Padding(
+              (city.isNotEmpty || branch.isNotEmpty)?Padding(
                 padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                 child: SizedBox(
                   height: 60,
@@ -148,7 +148,7 @@ class _OutputScreenState extends State<outputScreen> {
                     ),
                   ),
                 ),
-              ),
+              ):SizedBox(),
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
