@@ -24,4 +24,6 @@ Here's a screen recording demonstrating the app's functionality:
 
 <img src="https://github.com/mridularaul/Find-My-College/assets/150273334/af128149-1440-449e-a6cd-d3b9e3539d16" alt="Screen Recording" width="260"/>
 
+---
+
 **Empower your future with informed college choices.**
